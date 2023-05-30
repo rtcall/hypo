@@ -10,7 +10,7 @@ import (
 func main() {
 	if len(os.Args) < 2 {
 		fmt.Printf("usage: %s file\n", os.Args[0])
-		return
+		os.Exit(1)
 	}
 
 	buf, err := os.ReadFile(os.Args[1])
@@ -29,7 +29,7 @@ func main() {
 		if err := c.Step(); err != nil {
 			fmt.Printf("fatal: %s\n\n", err)
 			c.WriteTrace(os.Stdout)
-			break
+			os.Exit(1)
 		}
 	}
 }
